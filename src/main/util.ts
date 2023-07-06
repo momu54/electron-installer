@@ -1,5 +1,7 @@
 import { URL } from "url";
 import path from "path";
+import { promisify } from "util";
+import { exec } from "child_process";
 
 export function resolveHtmlPath(htmlFileName: string): string {
   if (process.env.NODE_ENV === "development") {
@@ -10,3 +12,5 @@ export function resolveHtmlPath(htmlFileName: string): string {
   }
   return `file://${path.resolve(__dirname, "../renderer/", htmlFileName)}`;
 }
+
+export const execAsync = promisify(exec);
